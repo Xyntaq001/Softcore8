@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenyatta University</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --gold: #C8960C;
+    --dark: #0D1B2A;
+    --light: #F5F0E8;
+    --white: #fff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans', sans-serif; background:var(--light); color:var(--dark); }
+
+  /* NAV */
+  nav {
+    background:var(--dark);
+    position:sticky; top:0; z-index:100;
+    border-bottom:3px solid var(--gold);
+  }
+  .nav-inner {
+    max-width:1200px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 24px;
+  }
+  .nav-logo {
+    display:flex; align-items:center; gap:12px;
+    padding:12px 0; text-decoration:none;
+  }
+  .nav-logo img { height:48px; border-radius:4px; }
+  .nav-logo-text { color:var(--white); }
+  .nav-logo-text span { display:block; font-family:'Playfair Display', serif; font-size:1rem; font-weight:700; line-height:1.1; }
+  .nav-logo-text small { font-size:0.68rem; color:var(--gold); letter-spacing:0.05em; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a {
+    color:#ccc; text-decoration:none; font-size:0.82rem; font-weight:500;
+    padding:20px 14px; display:block; letter-spacing:0.04em; text-transform:uppercase;
+    transition:color .2s, border-bottom .2s; border-bottom:3px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active { color:var(--gold); border-bottom-color:var(--gold); }
+  .hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--white); margin:5px 0; transition:.3s; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--dark) 0%, #1a2e45 60%, #0f2236 100%);
+    color:var(--white); padding:80px 24px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(200,150,12,0.15) 0%, transparent 60%);
+  }
+  .hero-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; position:relative; }
+  .hero-text h1 { font-family:'Playfair Display', serif; font-size:clamp(2rem, 5vw, 3.5rem); line-height:1.1; margin-bottom:16px; }
+  .hero-text h1 em { color:var(--gold); font-style:normal; }
+  .hero-text p { color:#b0c4de; font-size:1.05rem; line-height:1.7; margin-bottom:32px; }
+  .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { padding:13px 28px; border-radius:4px; font-weight:500; text-decoration:none; font-size:0.95rem; transition:.2s; display:inline-block; }
+  .btn-primary { background:var(--red); color:var(--white); }
+  .btn-primary:hover { background:#a30d24; }
+  .btn-outline { border:2px solid var(--gold); color:var(--gold); }
+  .btn-outline:hover { background:var(--gold); color:var(--dark); }
+  .hero-img { position:relative; }
+  .hero-img img { width:100%; border-radius:8px; object-fit:cover; max-height:400px; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+  .hero-badge {
+    position:absolute; bottom:-16px; left:20px;
+    background:var(--gold); color:var(--dark);
+    padding:12px 20px; border-radius:4px; font-weight:700; font-size:0.85rem;
+    box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  /* STATS */
+  .stats { background:var(--red); padding:40px 24px; }
+  .stats-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center; }
+  .stat-item { color:var(--white); }
+  .stat-item strong { display:block; font-family:'Playfair Display', serif; font-size:2.2rem; font-weight:900; }
+  .stat-item span { font-size:0.85rem; opacity:.85; letter-spacing:0.04em; }
+
+  /* SECTION */
+  section { padding:72px 24px; }
+  .section-inner { max-width:1200px; margin:0 auto; }
+  .section-label { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+  .section-title { font-family:'Playfair Display', serif; font-size:clamp(1.6rem, 3vw, 2.4rem); font-weight:700; margin-bottom:20px; }
+
+  /* ABOUT STRIP */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .about-text p { line-height:1.8; color:#444; margin-bottom:16px; }
+  .about-imgs { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .about-imgs img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
+  .about-imgs img:first-child { grid-column:1/-1; height:240px; }
+
+  /* FACULTIES CARDS */
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
+  .card {
+    background:var(--white); border-radius:8px;
+    overflow:hidden; box-shadow:0 2px 20px rgba(0,0,0,0.07);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .card:hover { transform:translateY(-6px); box-shadow:0 10px 40px rgba(0,0,0,0.13); }
+  .card-img { width:100%; height:180px; object-fit:cover; }
+  .card-body { padding:20px; }
+  .card-body h3 { font-family:'Playfair Display', serif; font-size:1.1rem; margin-bottom:8px; }
+  .card-body p { font-size:0.88rem; color:#555; line-height:1.6; }
+  .card-link { display:inline-block; margin-top:12px; font-size:0.83rem; font-weight:600; color:var(--red); text-decoration:none; }
+  .card-link:hover { text-decoration:underline; }
+
+  /* NEWS */
+  .news-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:40px; }
+  .news-item { background:var(--white); border-radius:8px; padding:24px; border-left:4px solid var(--gold); }
+  .news-item .tag { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+  .news-item h4 { font-family:'Playfair Display', serif; font-size:1rem; margin-bottom:8px; }
+  .news-item p { font-size:0.86rem; color:#555; line-height:1.6; }
+
+  /* FOOTER */
+  footer { background:var(--dark); color:#aaa; padding:48px 24px 24px; }
+  .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+  .footer-brand img { height:48px; margin-bottom:16px; }
+  .footer-brand p { font-size:0.88rem; line-height:1.7; }
+  footer h5 { color:var(--white); font-size:0.9rem; font-weight:700; margin-bottom:16px; letter-spacing:0.04em; }
+  footer ul { list-style:none; }
+  footer ul li { margin-bottom:10px; }
+  footer ul li a { color:#aaa; text-decoration:none; font-size:0.86rem; transition:color .2s; }
+  footer ul li a:hover { color:var(--gold); }
+  .footer-bottom { border-top:1px solid #2a3a4a; padding-top:20px; text-align:center; font-size:0.8rem; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    .hero-inner, .about-grid { grid-template-columns:1fr; }
+    .hero-img { display:none; }
+    .stats-inner { grid-template-columns:repeat(2,1fr); }
+    .cards { grid-template-columns:1fr 1fr; }
+    .footer-inner { grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:600px) {
+    .nav-links { display:none; flex-direction:column; position:absolute; top:72px; left:0; right:0; background:var(--dark); padding:8px 0; }
+    .nav-links.open { display:flex; }
+    .hamburger { display:block; }
+    .cards, .news-grid { grid-template-columns:1fr; }
+    .stats-inner { grid-template-columns:1fr 1fr; }
+    .footer-inner { grid-template-columns:1fr; }
+    .about-imgs img:first-child { height:180px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://maisekali.github.io/Softcore8/download.png" alt="KU Logo">
+      <div class="nav-logo-text">
+        <span>Kenyatta University</span>
+        <small>Knowledge · Integrity · Excellence</small>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="administration.html">Administration</a>
+      <a href="faculties.html">Faculties</a>
+      <a href="Academics.html">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="student news.html">Student News</a>
+      <a href="about us.html">About Us</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="section-label" style="color:var(--gold)">Welcome to</p>
+      <h1>Kenyatta<br><em>University</em></h1>
+      <p>Where your journey begins with a world of opportunities. Academic excellence meets real-world experience on a campus that's vibrant, inclusive, and driven by purpose.</p>
+      <div class="hero-btns">
+        <a href="Academics.html" class="btn btn-primary">Explore Programs</a>
+        <a href="about us.html" class="btn btn-outline">About Us</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0015.jpg" alt="Kenyatta University Campus">
+      <div class="hero-badge">🎓 Top Ranked in East Africa</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item"><strong>70+</strong><span>Academic Programs</span></div>
+    <div class="stat-item"><strong>40,000+</strong><span>Enrolled Students</span></div>
+    <div class="stat-item"><strong>1955</strong><span>Year Established</span></div>
+    <div class="stat-item"><strong>100+</strong><span>Research Projects</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section style="background:var(--white)">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">A Community Built on Excellence</h2>
+        <p>At Kenyatta University, we are more than an institution of higher learning — we are a community dedicated to academic excellence, innovation, and global impact. Since our founding in 1955, we have been committed to shaping future leaders.</p>
+        <p>Our academic programs span the arts and humanities, sciences, engineering, business, health, and beyond, providing students with the tools to think critically, communicate effectively, and solve real-world problems.</p>
+        <a href="about us.html" class="btn btn-primary" style="margin-top:8px">Learn More</a>
+      </div>
+      <div class="about-imgs">
+        <img src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0006.jpg" alt="Campus life">
+        <img src="https://maisekali.github.io/Softcore8/WhatsApp%20Image%202025-04-08%20at%2017.51.18_8caf88e1.jpg" alt="Students">
+        <img src="https://maisekali.github.io/Softcore8/download.jpg" alt="KU Building">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTIES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Academic Excellence</p>
+    <h2 class="section-title">Our Schools & Faculties</h2>
+    <div class="cards">
+      <div class="card">
+        <img class="card-img" src="https://maisekali.github.io/Softcore8/download%20(6).jpg" alt="Engineering">
+        <div class="card-body">
+          <h3>School of Engineering</h3>
+          <p>Offering Mechanical, Civil, and Electrical Engineering programs with state-of-the-art labs and hands-on practical training.</p>
+          <a href="faculties.html" class="card-link">Explore →</a>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0023.jpg" alt="Arts">
+        <div class="card-body">
+          <h3>Arts & Humanities</h3>
+          <p>A rich tradition of scholarship in literature, history, philosophy, and social sciences preparing globally-minded graduates.</p>
+          <a href="faculties.html" class="card-link">Explore →</a>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0026.jpg" alt="Research">
+        <div class="card-body">
+          <h3>Research & Innovation</h3>
+          <p>Groundbreaking research that addresses real-world challenges across health, technology, environment, and public policy.</p>
+          <a href="research.html" class="card-link">Explore →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT NEWS -->
+<section style="background:var(--white)">
+  <div class="section-inner">
+    <p class="section-label">Campus Life</p>
+    <h2 class="section-title">Latest News & Updates</h2>
+    <div class="news-grid">
+      <div class="news-item">
+        <div class="tag">Admissions</div>
+        <h4>2025/2026 Intake Now Open</h4>
+        <p>Applications for the new academic year are now being accepted. Explore our undergraduate and postgraduate programs.</p>
+      </div>
+      <div class="news-item">
+        <div class="tag">Research</div>
+        <h4>KU Faculty Win National Research Grant</h4>
+        <p>Our Engineering faculty have been awarded a prestigious national grant to advance renewable energy research in East Africa.</p>
+      </div>
+      <div class="news-item">
+        <div class="tag">Events</div>
+        <h4>Annual Science & Technology Fair</h4>
+        <p>Students from across all faculties are invited to showcase innovations at the annual inter-faculty science fair.</p>
+      </div>
+      <div class="news-item">
+        <div class="tag">Achievement</div>
+        <h4>KU Ranked #1 in East Africa</h4>
+        <p>Kenyatta University has been recognized as the leading institution of higher learning in East Africa for the third year running.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:32px">
+      <a href="student news.html" class="btn btn-primary">All Student News</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://maisekali.github.io/Softcore8/download.png" alt="KU Logo">
+      <p>Kenyatta University — Where knowledge meets purpose and education becomes transformation. Established 1955, Nairobi, Kenya.</p>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="administration.html">Administration</a></li>
+        <li><a href="faculties.html">Faculties</a></li>
+        <li><a href="Academics.html">Academics</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="about us.html">About Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact Us</h5>
+      <ul>
+        <li><a href="tel:0757293783">0757 293 783</a></li>
+        <li><a href="tel:0703363260">0703 363 260</a></li>
+        <li><a href="mailto:kenyattauni@gmail.com">kenyattauni@gmail.com</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Kenyatta University. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

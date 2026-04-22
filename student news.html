@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student News – Kenyatta University</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#C8102E;--gold:#C8960C;--dark:#0D1B2A;--light:#F5F0E8;--white:#fff;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--dark);}
+
+  nav{background:var(--dark);position:sticky;top:0;z-index:100;border-bottom:3px solid var(--gold);}
+  .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;}
+  .nav-logo img{height:48px;border-radius:4px;}
+  .nav-logo-text{color:var(--white);}
+  .nav-logo-text span{display:block;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.1;}
+  .nav-logo-text small{font-size:.68rem;color:var(--gold);letter-spacing:.05em;}
+  .nav-links{display:flex;gap:4px;}
+  .nav-links a{color:#ccc;text-decoration:none;font-size:.82rem;font-weight:500;padding:20px 14px;display:block;letter-spacing:.04em;text-transform:uppercase;transition:color .2s,border-bottom .2s;border-bottom:3px solid transparent;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold);}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;}
+
+  /* HERO */
+  .page-hero{background:linear-gradient(135deg,var(--dark),#1a2e45);color:var(--white);padding:72px 24px;text-align:center;}
+  .page-hero .section-label{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:14px;}
+  .page-hero p{color:#b0c4de;max-width:580px;margin:0 auto;line-height:1.65;}
+
+  section{padding:64px 24px;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-label{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:24px;}
+
+  /* FEATURE ARTICLE */
+  .feature{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,.09);margin-bottom:48px;}
+  .feature-img{width:100%;height:420px;object-fit:cover;display:block;}
+  .feature-body{padding:36px 40px;}
+  .feature-tag{display:inline-block;background:var(--red);color:var(--white);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:14px;}
+  .feature-body h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:16px;line-height:1.25;}
+  .feature-body p{color:#444;line-height:1.85;margin-bottom:16px;font-size:.97rem;}
+  .feature-meta{font-size:.8rem;color:#888;margin-top:20px;padding-top:20px;border-top:1px solid #eee;}
+
+  /* QUOTE CALLOUT */
+  .pull-quote{border-left:4px solid var(--gold);background:var(--light);padding:24px 28px;border-radius:0 8px 8px 0;margin:28px 0;}
+  .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.55;}
+  .pull-quote cite{display:block;margin-top:10px;font-size:.82rem;color:#888;font-style:normal;}
+
+  /* SECONDARY ARTICLES */
+  .articles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .article-card{background:var(--white);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:transform .25s,box-shadow .25s;}
+  .article-card:hover{transform:translateY(-5px);box-shadow:0 10px 36px rgba(0,0,0,.12);}
+  .article-card img{width:100%;height:200px;object-fit:cover;display:block;}
+  .article-card-body{padding:22px;}
+  .article-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+  .article-card-body h3{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:8px;line-height:1.3;}
+  .article-card-body p{font-size:.85rem;color:#555;line-height:1.65;}
+
+  /* AWARDS STRIP */
+  .awards-strip{background:var(--dark);padding:56px 24px;}
+  .awards-inner{max-width:1100px;margin:0 auto;text-align:center;}
+  .awards-inner h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--white);margin-bottom:32px;}
+  .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .award{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:24px;color:var(--white);}
+  .award .trophy{font-size:1.8rem;margin-bottom:10px;}
+  .award h4{font-family:'Playfair Display',serif;font-size:.95rem;margin-bottom:6px;color:var(--gold);}
+  .award p{font-size:.82rem;color:#aab;line-height:1.55;}
+
+  /* PHOTO GALLERY */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:36px;}
+  .gallery img{width:100%;height:160px;object-fit:cover;border-radius:4px;transition:transform .3s;}
+  .gallery img:hover{transform:scale(1.04);}
+
+  footer{background:var(--dark);color:#aaa;padding:48px 24px 24px;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  .footer-brand img{height:48px;margin-bottom:16px;}
+  .footer-brand p{font-size:.88rem;line-height:1.7;}
+  footer h5{color:var(--white);font-size:.9rem;font-weight:700;margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer ul li{margin-bottom:10px;}
+  footer ul li a{color:#aaa;text-decoration:none;font-size:.86rem;transition:color .2s;}
+  footer ul li a:hover{color:var(--gold);}
+  .footer-bottom{border-top:1px solid #2a3a4a;padding-top:20px;text-align:center;font-size:.8rem;}
+
+  @media(max-width:900px){.articles-grid{grid-template-columns:1fr;}.awards-grid{grid-template-columns:1fr 1fr;}.gallery{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.nav-links{display:none;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--dark);padding:8px 0;}.nav-links.open{display:flex;}.hamburger{display:block;}.feature-img{height:240px;}.feature-body{padding:24px 20px;}.awards-grid{grid-template-columns:1fr;}.gallery{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://maisekali.github.io/Softcore8/download.png" alt="KU Logo">
+      <div class="nav-logo-text">
+        <span>Kenyatta University</span>
+        <small>Knowledge · Integrity · Excellence</small>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="administration.html">Administration</a>
+      <a href="faculties.html">Faculties</a>
+      <a href="Academics.html">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="student news.html" class="active">Student News</a>
+      <a href="about us.html">About Us</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="section-label">Campus Life</p>
+  <h1>Student News</h1>
+  <p>Stories of creativity, leadership, and achievement from across the Kenyatta University community.</p>
+</div>
+
+<!-- FEATURE ARTICLE -->
+<section style="background:var(--white)">
+  <div class="section-inner">
+    <p class="section-label">Feature Story</p>
+    <h2 class="section-title">Latest from Campus</h2>
+
+    <div class="feature">
+      <img class="feature-img" src="https://maisekali.github.io/Softcore8/download%20(20).jpg" alt="Student Innovation Showcase">
+      <div class="feature-body">
+        <span class="feature-tag">Innovation</span>
+        <h2>Students Shine at Annual Innovation Showcase</h2>
+        <p>Students at Kenyatta University demonstrated creativity, leadership, and problem-solving skills at this year's Annual Student Innovation Showcase, held last Friday in the university's Innovation Hall. The event brought together undergraduates and graduate students from a wide range of academic disciplines to present their projects, research, startups, and social initiatives to faculty, peers, and local community members.</p>
+        <p>More than 60 projects were featured, including sustainable engineering designs, mobile apps for mental wellness, creative writing collections, and public health outreach campaigns.</p>
+
+        <div class="pull-quote">
+          <p>"I loved seeing how students from different departments collaborated. It really shows how much talent and energy there is on campus — and how we're encouraged to turn our ideas into something real."</p>
+          <cite>— Sarah Malik, Senior, Business & Marketing</cite>
+        </div>
+
+        <p>One of the event highlights was a group of environmental science majors who developed a low-cost, solar-powered water filtration system for rural communities — earning them the coveted "Innovation for Impact" award.</p>
+        <p>The showcase also gave students a chance to connect with alumni, industry professionals, and university partners, many of whom offered mentorship opportunities, internships, and even seed funding for promising projects. For many students, it was a stepping stone into launching their first business, publishing academic work, or contributing to real-world solutions.</p>
+
+        <div class="feature-meta">📅 Published April 2025 &nbsp;·&nbsp; 📌 Innovation Hall, KU Campus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECONDARY ARTICLES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">More Stories</p>
+    <h2 class="section-title">Around Campus</h2>
+    <div class="articles-grid">
+      <div class="article-card">
+        <img src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0029.jpg" alt="Student event">
+        <div class="article-card-body">
+          <span class="article-tag">Admissions</span>
+          <h3>2025/2026 Intake Applications Now Open</h3>
+          <p>Kenyatta University has opened applications for the new academic year. Prospective students are encouraged to explore our wide range of undergraduate and postgraduate programs across all faculties.</p>
+        </div>
+      </div>
+      <div class="article-card">
+        <img src="https://maisekali.github.io/Softcore8/download%20(18).jpg" alt="Achievement">
+        <div class="article-card-body">
+          <span class="article-tag">Achievement</span>
+          <h3>KU Ranked #1 University in East Africa</h3>
+          <p>For the third consecutive year, Kenyatta University has been recognized as the top institution of higher learning in East Africa, praised for academic quality, research output, and graduate employability.</p>
+        </div>
+      </div>
+      <div class="article-card">
+        <img src="https://maisekali.github.io/Softcore8/download%20(19).jpg" alt="Community">
+        <div class="article-card-body">
+          <span class="article-tag">Community</span>
+          <h3>Engineering Students Build Water Filtration System for Rural Communities</h3>
+          <p>A team of environmental science and engineering students has earned national recognition for developing a solar-powered, low-cost water filtration prototype now being piloted in two rural counties.</p>
+        </div>
+      </div>
+      <div class="article-card">
+        <img src="https://maisekali.github.io/Softcore8/download%20(17).jpg" alt="Events">
+        <div class="article-card-body">
+          <span class="article-tag">Events</span>
+          <h3>Inter-Faculty Science & Technology Fair Announced</h3>
+          <p>The university's annual Science & Technology Fair returns this semester. Students from all faculties are invited to register and showcase their innovations for a chance to win grants and mentorship support.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<div class="awards-strip">
+  <div class="awards-inner">
+    <h2>Student Achievements & Awards</h2>
+    <div class="awards-grid">
+      <div class="award">
+        <div class="trophy">🏆</div>
+        <h4>Innovation for Impact Award</h4>
+        <p>Environmental Science team for the solar-powered rural water filtration system — Annual Innovation Showcase 2025.</p>
+      </div>
+      <div class="award">
+        <div class="trophy">🥇</div>
+        <h4>East Africa's #1 University</h4>
+        <p>Kenyatta University ranked first in East Africa for the third consecutive year for academic excellence and research.</p>
+      </div>
+      <div class="award">
+        <div class="trophy">🌱</div>
+        <h4>Sustainability Champions</h4>
+        <p>KU's Green Campus Initiative recognized nationally for reducing carbon footprint and promoting environmental education.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section style="background:var(--white)">
+  <div class="section-inner">
+    <p class="section-label">Student Life</p>
+    <h2 class="section-title">Life at KU</h2>
+    <p style="color:#555;line-height:1.7;margin-bottom:8px;">The event is just one example of how Kenyatta University supports student innovation and celebrates success beyond the classroom. With more events, competitions, and creative opportunities on the horizon, the future continues to look bright for the university's next generation of changemakers.</p>
+    <div class="gallery">
+      <img src="https://maisekali.github.io/Softcore8/images%20(5).jpg" alt="Campus life">
+      <img src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0029.jpg" alt="Students">
+      <img src="https://maisekali.github.io/Softcore8/download%20(20).jpg" alt="Innovation">
+      <img src="https://maisekali.github.io/Softcore8/download%20(18).jpg" alt="Activities">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://maisekali.github.io/Softcore8/download.png" alt="KU Logo">
+      <p>Kenyatta University — Where knowledge meets purpose and education becomes transformation. Established 1955, Nairobi, Kenya.</p>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="administration.html">Administration</a></li>
+        <li><a href="faculties.html">Faculties</a></li>
+        <li><a href="Academics.html">Academics</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="about us.html">About Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact Us</h5>
+      <ul>
+        <li><a href="tel:0757293783">0757 293 783</a></li>
+        <li><a href="tel:0703363260">0703 363 260</a></li>
+        <li><a href="mailto:kenyattauni@gmail.com">kenyattauni@gmail.com</a></li>
+        <li><a href="#">Facebook: Kenyatta University</a></li>
+        <li><a href="#">Instagram: @kenyattauniversity</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kenyatta University. All rights reserved.</p></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Kenyatta University</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#C8102E;--gold:#C8960C;--dark:#0D1B2A;--light:#F5F0E8;--white:#fff;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--dark);}
+  nav{background:var(--dark);position:sticky;top:0;z-index:100;border-bottom:3px solid var(--gold);}
+  .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;}
+  .nav-logo img{height:48px;border-radius:4px;}
+  .nav-logo-text{color:var(--white);}
+  .nav-logo-text span{display:block;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.1;}
+  .nav-logo-text small{font-size:.68rem;color:var(--gold);letter-spacing:.05em;}
+  .nav-links{display:flex;gap:4px;}
+  .nav-links a{color:#ccc;text-decoration:none;font-size:.82rem;font-weight:500;padding:20px 14px;display:block;letter-spacing:.04em;text-transform:uppercase;transition:color .2s,border-bottom .2s;border-bottom:3px solid transparent;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold);}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;}
+  .page-hero{background:linear-gradient(135deg,var(--dark),#1a2e45);color:var(--white);padding:60px 24px;text-align:center;}
+  .page-hero .section-label{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);}
+  section{padding:64px 24px;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-label{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:20px;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .prose p{line-height:1.85;color:#444;margin-bottom:18px;font-size:.97rem;}
+  .img-stack img{width:100%;border-radius:8px;object-fit:cover;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,.12);}
+  .contact-strip{background:var(--dark);color:var(--white);padding:48px 24px;margin-top:0;}
+  .contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;}
+  .contact-item h4{color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+  .contact-item a{color:var(--white);text-decoration:none;display:block;margin-bottom:8px;font-size:.9rem;}
+  .contact-item a:hover{color:var(--gold);}
+  footer{background:var(--dark);color:#aaa;padding:40px 24px 24px;border-top:1px solid #2a3a4a;}
+  .footer-bottom{max-width:1200px;margin:0 auto;text-align:center;font-size:.8rem;}
+  @media(max-width:700px){.about-grid{grid-template-columns:1fr;}.contact-inner{grid-template-columns:1fr;}.nav-links{display:none;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--dark);padding:8px 0;}.nav-links.open{display:flex;}.hamburger{display:block;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://maisekali.github.io/Softcore8/download.png" alt="KU Logo">
+      <div class="nav-logo-text">
+        <span>Kenyatta University</span>
+        <small>Knowledge · Integrity · Excellence</small>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="administration.html">Administration</a>
+      <a href="faculties.html">Faculties</a>
+      <a href="Academics.html">Academics</a>
+      <a href="research.html">Research</a>
+      <a href="student news.html">Student News</a>
+      <a href="about us.html" class="active">About Us</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <p class="section-label">Who We Are</p>
+  <h1>About Kenyatta University</h1>
+</div>
+
+<section style="background:var(--white)">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">Our Mission</p>
+        <h2 class="section-title">More Than an Institution</h2>
+        <div class="prose">
+          <p>At Kenyatta University, we are more than an institution of higher learning — we are a community dedicated to academic excellence, innovation, and global impact. Since our founding in 1955, we have been committed to shaping future leaders, advancing research that matters, and building a more inclusive and informed society.</p>
+          <p>Located in the heart of Nairobi, Kenya, Kenyatta University offers a vibrant and diverse campus experience, with a student body representing cultures, perspectives, and talents from across the country and around the world.</p>
+          <p>Our academic programs span the arts and humanities, sciences, engineering, business, health, and beyond, providing students with the tools to think critically, communicate effectively, and solve real-world problems.</p>
+          <p>Our faculty are internationally recognized experts, scholars, and mentors who bring their passion for teaching and research into every classroom, lab, and community partnership.</p>
+          <p>At Kenyatta University, we don't just educate students — we empower them to lead, discover, and inspire. Welcome to a place where knowledge meets purpose and education becomes transformation.</p>
+        </div>
+      </div>
+      <div class="img-stack">
+        <img src="https://maisekali.github.io/Softcore8/WhatsApp%20Image%202025-04-08%20at%2017.51.18_c9be38bc.jpg" alt="Campus">
+        <img src="https://maisekali.github.io/Softcore8/IMG-20250408-WA0026.jpg" alt="Students">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div class="contact-item">
+      <h4>📞 Call Us</h4>
+      <a href="tel:0757293783">0757 293 783</a>
+      <a href="tel:0703363260">0703 363 260</a>
+    </div>
+    <div class="contact-item">
+      <h4>✉️ Email</h4>
+      <a href="mailto:kenyattauni@gmail.com">kenyattauni@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <h4>🌐 Social Media</h4>
+      <a href="#">Facebook: Kenyatta University</a>
+      <a href="#">Instagram: @kenyattauniversity</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom"><p>© 2025 Kenyatta University. All rights reserved.</p></div>
+</footer>
+</body>
+</html>
